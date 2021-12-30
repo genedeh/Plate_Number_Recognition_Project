@@ -4,15 +4,16 @@ import imutils
 
 
 class EdgeDetection:
-    def __init__(self, image_path: str, line_color: tuple, line_thickness=1):
+    def __init__(self, image_path: str, line_color: tuple, line_color2: tuple, line_thickness=1):
         self.line_thickness = line_thickness
         if os.path.isfile(image_path):
             self.image_path = image_path
             self.image = cv2.imread(image_path, cv2.IMREAD_COLOR)
         else:
             print("This Image Path Dose Not Exist")
-        if len(line_color) == 3:
+        if len(line_color) == 3 and len(line_color2) == 3:
             self.line_color = line_color
+            self.line_color2 = line_color2
         else:
             print("This Color Code Is Incorrect")
 
@@ -28,13 +29,20 @@ class EdgeDetection:
         image = self.image.copy()
         cv2.drawContours(image, contours, -1, self.line_color, self.line_thickness)
         cv2.imshow("Edges Detected", image)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
-        return image, contours
+        return contours
+
+    def full_edge_detection(self):
+        contours = self.first_edge_detection()
+        new_contours = sorted(contours, key=cv2.contourArea, reverse=True)[:30]
+        screenContour = None
+        new_image = self.image.copy()
+        cv2.drawContours(new_image, new_contours, -1, self.line_color2, self.line_thickness)
+        cv2.imshow("img2", new_image)
+
+        return screenContour, contours
 
 
-edge_detection = EdgeDetection("Test_Image/Image(3).png", (0, 255, 0))
-result = edge_detection.first_edge_detection()
-cv2.imshow("Test", result[0])
+edge_detection = EdgeDetection("Test_Image/Image(3).png", (0, 255, 0), (255, 255, 0))
+edge_detection.full_edge_detection()
 cv2.waitKey(0)
 cv2.destroyAllWindows()
