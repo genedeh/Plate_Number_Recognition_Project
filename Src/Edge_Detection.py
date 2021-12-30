@@ -4,7 +4,8 @@ import imutils
 
 
 class EdgeDetection:
-    def __init__(self, image_path: str, line_color: tuple):
+    def __init__(self, image_path: str, line_color: tuple, line_thickness=1):
+        self.line_thickness = line_thickness
         if os.path.isfile(image_path):
             self.image_path = image_path
             self.image = cv2.imread(image_path, cv2.IMREAD_COLOR)
@@ -17,3 +18,19 @@ class EdgeDetection:
 
     def resize(self, width=500, height=200):
         self.image = imutils.resize(self.image, width=width, height=height)
+
+    def detect_edge(self):
+        self.resize()
+        gray_image = cv2.cvtColor(self.image, cv2.COLOR_BGR2GRAY)
+        bilateral_filter_gray_image = cv2.bilateralFilter(gray_image, 11, 17, 17)
+        edged_image = cv2.Canny(bilateral_filter_gray_image, 30, 200)
+        contours, new = cv2.findContours(edged_image.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        image1 = self.image.copy()
+        cv2.drawContours(image1, contours, -1, self.line_color, self.line_thickness)
+        cv2.imshow("Edges Detected", image1)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+        return image1
+
+
+
