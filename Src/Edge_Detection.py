@@ -25,12 +25,12 @@ class EdgeDetection:
         bilateral_filter_gray_image = cv2.bilateralFilter(gray_image, 11, 17, 17)
         edged_image = cv2.Canny(bilateral_filter_gray_image, 2, 240)
         contours, new = cv2.findContours(edged_image.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-        image1 = self.image.copy()
-        cv2.drawContours(image1, contours, -1, self.line_color, self.line_thickness)
-        cv2.imshow("Edges Detected", image1)
+        image = self.image.copy()
+        cv2.drawContours(image, contours, -1, self.line_color, self.line_thickness)
+        cv2.imshow("Edges Detected", image)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
-        return image1
+        return image
 
 
 edge_detection = EdgeDetection("Test_Image/Image(3).png", (0, 255, 0))
