@@ -22,4 +22,7 @@ class EdgeDetectionTest(unittest.TestCase):
         result = self.edge_detection.full_edge_detection()
         self.assertEqual(result[0], None)
 
+    def test_contours_return_value(self):
+        result =  self.edge_detection.full_edge_detection()
+        self.assertEqual(type(result[1]), list)
 
