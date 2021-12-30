@@ -16,14 +16,14 @@ class EdgeDetection:
         else:
             print("This Color Code Is Incorrect")
 
-    def resize(self, width=500, height=200):
+    def resize(self, width=500, height=500):
         self.image = imutils.resize(self.image, width=width, height=height)
 
     def detect_edge(self):
         self.resize()
         gray_image = cv2.cvtColor(self.image, cv2.COLOR_BGR2GRAY)
         bilateral_filter_gray_image = cv2.bilateralFilter(gray_image, 11, 17, 17)
-        edged_image = cv2.Canny(bilateral_filter_gray_image, 30, 200)
+        edged_image = cv2.Canny(bilateral_filter_gray_image, 2, 240)
         contours, new = cv2.findContours(edged_image.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         image1 = self.image.copy()
         cv2.drawContours(image1, contours, -1, self.line_color, self.line_thickness)
@@ -33,4 +33,5 @@ class EdgeDetection:
         return image1
 
 
-
+edge_detection = EdgeDetection("Test_Image/Image(3).png", (0, 255, 0))
+edge_detection.detect_edge()
