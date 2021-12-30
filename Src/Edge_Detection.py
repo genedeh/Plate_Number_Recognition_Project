@@ -19,7 +19,7 @@ class EdgeDetection:
     def resize(self, width=500, height=500):
         self.image = imutils.resize(self.image, width=width, height=height)
 
-    def detect_edge(self):
+    def first_edge_detection(self):
         self.resize()
         gray_image = cv2.cvtColor(self.image, cv2.COLOR_BGR2GRAY)
         bilateral_filter_gray_image = cv2.bilateralFilter(gray_image, 11, 17, 17)
@@ -30,8 +30,11 @@ class EdgeDetection:
         cv2.imshow("Edges Detected", image)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
-        return image
+        return image, contours
 
 
 edge_detection = EdgeDetection("Test_Image/Image(3).png", (0, 255, 0))
-edge_detection.detect_edge()
+result = edge_detection.first_edge_detection()
+cv2.imshow("Test", result[0])
+cv2.waitKey(0)
+cv2.destroyAllWindows()
