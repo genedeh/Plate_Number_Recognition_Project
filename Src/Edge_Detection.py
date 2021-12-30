@@ -40,9 +40,3 @@ class EdgeDetection:
         cv2.imshow("img2", new_image)
 
         return screenContour, contours
-
-
-edge_detection = EdgeDetection("Test_Image/Image(3).png", (0, 255, 0), (255, 255, 0))
-edge_detection.full_edge_detection()
-cv2.waitKey(0)
-cv2.destroyAllWindows()
