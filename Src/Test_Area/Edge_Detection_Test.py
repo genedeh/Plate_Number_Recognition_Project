@@ -18,4 +18,8 @@ class EdgeDetectionTest(unittest.TestCase):
         result = self.edge_detection.full_edge_detection()
         self.assertEqual(type(result), tuple)
 
+    def test_screen_contour_return_value(self):
+        result = self.edge_detection.full_edge_detection()
+        self.assertEqual(result[0], None)
+
 
