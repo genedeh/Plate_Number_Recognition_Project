@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Plate_Nimber_Recognition_Project.iml" filepath="$PROJECT_DIR$/.idea/Plate_Nimber_Recognition_Project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Plate_Number_Recognition_Project.iml" filepath="$PROJECT_DIR$/.idea/Plate_Number_Recognition_Project.iml" />
     </modules>
   </component>
 </project>
