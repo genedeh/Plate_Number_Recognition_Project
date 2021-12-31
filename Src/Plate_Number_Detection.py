@@ -94,7 +94,7 @@ class Plate_Number_Detection:
         print(f" Fourth detection printed this: {self.check_plate_number_text(text)} / ", end=" ")
 
 
-PND = Plate_Number_Detection("Test_Area/Test_Image/Image(1).jpg", 500, 500, r"C:\Users\KidChaos\AppData\Local\Programs"
+PND = Plate_Number_Detection("Test_Area/Test_Image/Image(5).jpg", 500, 500, r"C:\Users\KidChaos\AppData\Local\Programs"
                                                                             r"\Tesseract-OCR\tesseract.exe", ".png")
 PND.get_contours()
 PND.verify_plate_number()
