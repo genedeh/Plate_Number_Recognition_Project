@@ -29,14 +29,16 @@ class EdgeDetection:
         image = self.image.copy()
         cv2.drawContours(image, contours, -1, self.line_color, self.line_thickness)
         cv2.imshow("Edges Detected", image)
-        return contours
+        return contours, image
 
     def full_edge_detection(self):
-        contours = self.first_edge_detection()
+        result = self.first_edge_detection()
+        contours = result[0]
+        image = result[1]
         new_contours = sorted(contours, key=cv2.contourArea, reverse=True)[:30]
         screenContour = None
         new_image = self.image.copy()
         cv2.drawContours(new_image, new_contours, -1, self.line_color2, self.line_thickness)
         cv2.imshow("img2", new_image)
 
-        return screenContour, contours
+        return screenContour, contours, new_image, image
