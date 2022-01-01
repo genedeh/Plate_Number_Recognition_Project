@@ -1,7 +1,7 @@
 import cv2
 import os
 import imutils
-from Plate_Number_Image_To_Text import overlay_ocr_text
+from Src.plate_number_image_to_text import overlay_ocr_text
 
 
 def plate_number_detection(image_path):
@@ -52,7 +52,9 @@ def plate_number_detection(image_path):
         raise OSError(f"{image_path} DOSE NOT EXIST IN YOU CURRENT WORKING DIRECTORY")
 
 
-print(plate_number_detection("Test_Area/Test_Image/Image(1).jpg"))
+result = plate_number_detection("Test_Area/Test_Image/Image(2).jpg")
+# if result == "LSR 542GE":
+#     print("PASSED")
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()

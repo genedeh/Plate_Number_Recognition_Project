@@ -49,7 +49,7 @@ def overlay_ocr_text(image_path, save_name):
                 bottom_right = (int(bottom_right[0]), int(bottom_right[1]))
                 cv2.rectangle(img=image, pt1=top_left, pt2=bottom_right, color=(0, 255, 0), thickness=100)
                 cv2.putText(img=image, text=text, org=(top_left[0], top_left[1] - 10), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
-                            fontScale=4, color=(255, 0, 0), thickness=8)
+                            fontScale=10, color=(255, 0, 0), thickness=80)
                 plate_number = text
                 print(f"Final plate Number: {text}")
                 break
