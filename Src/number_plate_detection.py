@@ -12,12 +12,10 @@ def plate_number_detection(image_path):
     contours, new = cv2.findContours(edged_image.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
     image1 = image.copy()
     cv2.drawContours(image1, contours, -1, (0, 255, 0), 1)
-    cv2.imshow("FIRST IMAGE RESULT", image1)
     contours = sorted(contours, key=cv2.contourArea, reverse=True)[:30]
     screen_contour = None
     image2 = image.copy()
     cv2.drawContours(image2, contours, -1, (0, 0, 0), 2)
-    cv2.imshow("SECOND IMAGE RESULT", image2)
     idx = 7
     for contour in contours:
         peri = cv2.arcLength(contour, True)
@@ -33,21 +31,20 @@ def plate_number_detection(image_path):
                 cv2.imwrite('./' + "Result" + '.png', new_img)
                 idx += 1
                 break
-    print("....GETTING TEXT....")
     cv2.drawContours(image, [screen_contour], -1, (0, 0, 0), 10)
-    cv2.imshow("Final image with plate detected", image)
 
     Cropped_location = './result.png'
     plate_number = cv2.imread(Cropped_location)
     gray_plate_number = cv2.cvtColor(plate_number, cv2.COLOR_BGR2GRAY)
     _, result = cv2.threshold(gray_plate_number, 158, 255, cv2.THRESH_BINARY)
 
-    cv2.waitKey(0)
     try:
         overlay_ocr_text(image_path, "FINAL RESULT")
     except TypeError:
         pass
-    cv2.destroyAllWindows()
 
 
-plate_number_detection("Test_Area/Test_Image/Image(8).jpg")
+plate_number_detection("Test_Area/Test_Image/Image(3).jpg")
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()

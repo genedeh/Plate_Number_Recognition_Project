@@ -35,6 +35,7 @@ def overlay_ocr_text(image_path, save_name):
     plt.figure()
     f, axarr = plt.subplots(1, 2, figsize=(figure_width, figure_height))
     axarr[0].imshow(image)
+    print("....GETTING TEXT....")
     result = recognize_text(image_path)
     for (bbox, text, prob) in result:
         text_has_num = any(chr.isdigit() for chr in text)
@@ -48,7 +49,7 @@ def overlay_ocr_text(image_path, save_name):
                 bottom_right = (int(bottom_right[0]), int(bottom_right[1]))
                 cv2.rectangle(img=image, pt1=top_left, pt2=bottom_right, color=(0, 255, 0), thickness=100)
                 cv2.putText(img=image, text=text, org=(top_left[0], top_left[1] - 10), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
-                            fontScale=1, color=(255, 0, 0), thickness=8)
+                            fontScale=4, color=(255, 0, 0), thickness=8)
                 print(f"Final plate Number: {text}")
                 break
             else:
@@ -60,4 +61,4 @@ def overlay_ocr_text(image_path, save_name):
     plt.savefig(f'./output/{save_name}_overlay.jpg', bbox_inches='tight')
 
 
-overlay_ocr_text("Test_Area/Test_Image/Image(8).jpg", "Easy_ocr_result")
+# overlay_ocr_text("Test_Area/Test_Image/Image(5).jpg", "Easy_ocr_result")
