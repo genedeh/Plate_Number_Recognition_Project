@@ -12,6 +12,7 @@ def recognize_text(image_path):
 
 def overlay_ocr_text(image_path, save_name):
     """loads an image, recognizes text, and overlays the text on the image."""
+    plate_number = None
     nigeria_number_plate_codes = ["KWL", "ABC", "BWR", "RSH", "JJJ", "AAA", "LSR", "FKJ", "FST", "APP", "AGL", "EPE",
                                   "LND",
                                   "MUS", "KRE", "FNN", "SGB", "LES", "EDE", "GBN", "BAT", "CRC", "BDW", "DDM", "BKR",

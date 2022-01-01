@@ -52,6 +52,3 @@ def plate_number_detection(image_path):
         raise OSError(f"{image_path} DOSE NOT EXIST IN YOU CURRENT WORKING DIRECTORY")
 
 
-
-cv2.waitKey(0)
-cv2.destroyAllWindows()
