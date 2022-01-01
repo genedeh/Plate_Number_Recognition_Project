@@ -34,8 +34,8 @@ def overlay_ocr_text(image_path, save_name):
     dots_per_inch = 80
     figure_width, figure_height = int(image.shape[0] / dots_per_inch), int(image.shape[1] / dots_per_inch)
     plt.figure()
-    f, axarr = plt.subplots(1, 2, figsize=(figure_width, figure_height))
-    axarr[0].imshow(image)
+    figure, list_result = plt.subplots(1, 2, figsize=(figure_width, figure_height))
+    list_result[0].imshow(image)
     print("....GETTING TEXT....")
     result = recognize_text(image_path)
     for (bbox, text, prob) in result:
@@ -59,9 +59,7 @@ def overlay_ocr_text(image_path, save_name):
         else:
             continue
 
-    axarr[1].imshow(image)
+    list_result[1].imshow(image)
     plt.savefig(f'./output/{save_name}_overlay.jpg', bbox_inches='tight')
     return plate_number
 
-
-# overlay_ocr_text("Test_Area/Test_Image/Image(5).jpg", "Easy_ocr_result")
