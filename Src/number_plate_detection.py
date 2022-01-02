@@ -43,6 +43,7 @@ def plate_number_detection(image_path):
         try:
             final_result = overlay_ocr_text(image_path, "FINAL RESULT")
             if final_result is None:
+                print("NO PLATE_NUMBER DETECTED")
                 return "NO PLATE_NUMBER DETECTED"
             else:
                 return final_result
