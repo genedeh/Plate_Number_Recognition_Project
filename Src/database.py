@@ -1,6 +1,8 @@
+import os
 import sqlite3
-
-connection = sqlite3.connect('nigeria_plate_number_code.db')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+db_path = os.path.join(BASE_DIR, "nigeria_plate_number_code.db")
+connection = sqlite3.connect(db_path)
 
 cursor = connection.cursor()
 
@@ -17,8 +19,13 @@ cursor = connection.cursor()
 # ("REE"), ("SUA"), ("JTA"), ("NND"), ("ABU"), ("AHD"), ("KNM"), ("ABM"), ("NDN"), ("BGM"), ("BNY"), ("DEG"), ("NCH"),
 # ("MHA"), ("KHE"), ("KPR"), ("SKP"), ("BRR"), ("RUM"), ("RGM"), ("GGU"), ("KPK"), ("BER"), ("PBT")""")
 
-cursor.execute("""SELECT * FROM nigeria_plate_number_code""")
-print(cursor.fetchall())
-connection.commit()
 
-connection.close()
+def get_nigeria_plate_number_code():
+    cursor.execute("""SELECT * FROM nigeria_plate_number_code""")
+    results = cursor.fetchall()
+    final_result = []
+    test = [final_result.append(codes[0]) for index, codes in enumerate(results)]
+    return final_result
+
+
+connection.commit()

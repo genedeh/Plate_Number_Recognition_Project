@@ -1,7 +1,7 @@
 import easyocr
 import matplotlib.pyplot as plt
 import cv2
-
+from Src.database import get_nigeria_plate_number_code
 
 def recognize_text(image_path):
     """loads an image and recognizes text."""
@@ -13,21 +13,7 @@ def recognize_text(image_path):
 def overlay_ocr_text(image_path, save_name):
     """loads an image, recognizes text, and overlays the text on the image."""
     plate_number = None
-    nigeria_number_plate_codes = ["KWL", "ABC", "BWR", "RSH", "JJJ", "AAA", "LSR", "FKJ", "FST", "APP", "AGL", "EPE",
-                                  "LND",
-                                  "MUS", "KRE", "FNN", "SGB", "LES", "EDE", "GBN", "BAT", "CRC", "BDW", "DDM", "BKR",
-                                  "DMS",
-                                  "NGW", "JBY", "KFY", "BRE", "DJA", "MLF", "KTN", "DTS", "BDJ", "GBR", "SEY", "LUY",
-                                  "AME",
-                                  "MAP", "NRK", "BJE", "KAM", "ANA", "CAL", "KMM", "BRA", "DUK", "GEP", "BNS", "EFE",
-                                  "GGJ",
-                                  "CKK", "TGD", "UDU", "BKS", "GWL", "NSR", "UGG", "KMC", "TRN", "DTF", "DAL", "KER",
-                                  "EFY",
-                                  "ADK", "EMR", "AMK", "KLE", "TUN", "WEN", "KEK", "AKR", "KTP", "FFN", "REE", "SUA",
-                                  "JTA",
-                                  "NND", "ABU", "AHD", "KNM", "ABM", "NDN", "BGM", "BNY", "DEG", "NCH", "MHA", "KHE",
-                                  "KPR",
-                                  "SKP", "BRR", "RUM", "RGM", "GGU", "KPK", "BER", "PBT"]
+    nigeria_number_plate_codes = get_nigeria_plate_number_code()
     image = cv2.imread(image_path)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
@@ -63,3 +49,4 @@ def overlay_ocr_text(image_path, save_name):
     plt.savefig(f'./output/{save_name}_overlay.jpg', bbox_inches='tight')
     return plate_number
 
+# overlay_ocr_text("Test_Area/Test_Image/Image(1).jpg", "FINAL RESULT")
