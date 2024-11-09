@@ -14,7 +14,7 @@
 ## DEPENDENCIES
   This project need you to download the above packages to use and needs you to create a directory named "output" in your working directory.
 ## HOW TO USE
-  ```
+  ```bash
     from number_plate_detection import plate_number_detection
     plate_number_detection("Test_Area/Test_Image/Image(1).jpg")
     >>> ....GETTING TEXT....
@@ -22,7 +22,7 @@
       >>> Final plate Number: LSR 542GE
   ```
   if you want to get only the plate number run 
-  ```
+  ```bash
    from number_plate_detection import plate_number_detection
    result = plate_number_detection("Test_Area/Test_Image/Image(1).jpg") 
    >>> ....GETTING TEXT....
@@ -30,7 +30,7 @@
      >>> LSR 542GE 
   ```
   or you may get
-  ```
+  ```bash
    from number_plate_detection import plate_number_detection
    result = plate_number_detection("Test_Area/Test_Image/Image(4).png") 
    >>> ....GETTING TEXT....
